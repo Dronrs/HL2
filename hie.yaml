@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "HL2:lib"
+
+    - path: "./app/Main.hs"
+      component: "HL2:exe:HL2-exe"
+
+    - path: "./app/Paths_HL2.hs"
+      component: "HL2:exe:HL2-exe"
+
+    - path: "./test"
+      component: "HL2:test:HL2-test"

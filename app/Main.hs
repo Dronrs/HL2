@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import HL2
 
 main :: IO ()
 main = someFunc

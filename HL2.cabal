@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ae87a2b369a4c07bc396e572a2b818a7aceaf81e1e6eb9cd7f0f9846f6652ba1
+-- hash: a0c3815fe68816d7c6c1c010ad37d70ab00510fc56f033369a3b5cf5d14fbe73
 
 name:           HL2
 version:        0.1.0.0
@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      HL2
   other-modules:
       Paths_HL2
   hs-source-dirs:
