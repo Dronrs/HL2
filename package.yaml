@@ -1,7 +1,7 @@
 name:                HL2
 version:             0.1.0.0
 github:              "githubuser/HL2"
-license:             BSD3
+license:             MIT
 author:              "Author name here"
 maintainer:          "example@example.com"
 copyright:           "2020 Author name here"

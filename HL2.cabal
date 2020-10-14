@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a0c3815fe68816d7c6c1c010ad37d70ab00510fc56f033369a3b5cf5d14fbe73
+-- hash: 714df040fe5ef032cf20b76b5f2de5e0af28201e42d008f2ad4e428791bc7a40
 
 name:           HL2
 version:        0.1.0.0
@@ -14,7 +14,7 @@ bug-reports:    https://github.com/githubuser/HL2/issues
 author:         Author name here
 maintainer:     example@example.com
 copyright:      2020 Author name here
-license:        BSD3
+license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
