@@ -19,6 +19,8 @@ data Expr
     | Param String
     | Do Oper Expr Expr
     | Let Expr Expr Expr
+    | Lambda Expr Expr
+    | Closure Expr
     | Error String
     | Nil
     deriving (Show)
