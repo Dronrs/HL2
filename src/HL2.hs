@@ -2,9 +2,6 @@ module HL2 where
 
 import Data.Maybe (fromMaybe)
 
-someFunc :: IO ()
-someFunc = print "Hello Haskell"
-
 type Env = [(String, Expr)]
 
 extEnv :: String -> Expr -> Env -> Env
@@ -20,7 +17,8 @@ data Expr
     | Do Oper Expr Expr
     | Let Expr Expr Expr
     | Lambda Expr Expr
-    | Closure Expr
+    | Closure Expr Env
+    | Call Expr Expr
     | Error String
     | Nil
     deriving (Show)
@@ -52,7 +50,29 @@ interp (Let (Param x) e1 e2) env = interp e2 (extEnv x (interp e1 env) env)
 
 interp (Param x) env = fromMaybe (Error ("undefined variable: " ++ x)) (lookup x env)
 
+interp s@(Lambda _ _) env = Closure s env
+
+interp (Call f e) env = case v of
+                      Number _ -> callExpr
+                      Boolean _ -> callExpr
+                      Str _ -> callExpr
+                      _ -> Error "syntax error"
+                      where
+                          v = interp e env
+                          clo = interp f env
+                          callExpr = case clo of
+                                    (Closure (Lambda (Param x) fb) env') -> interp fb (extEnv x v env')
+                                    _ -> Error "syntax error"
+
 interp _ _ = Error "syntax error"
 
 nullenv :: Env
 nullenv = [("", Nil)]
+
+hl2 :: Expr -> Expr
+hl2 e = interp e nullenv
+
+example = hl2 (Let (Param "foo") 
+            (Lambda (Param "x") 
+                (Do Plus (Param "x") (Number 10.1))) 
+                    (Call (Param "foo") (Number 1)))

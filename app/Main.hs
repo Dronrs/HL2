@@ -3,4 +3,4 @@ module Main where
 import HL2
 
 main :: IO ()
-main = someFunc
+main = print "Hello Haskell"
