@@ -7,7 +7,7 @@ type Env = [(String, Expr)]
 extEnv :: String -> Expr -> Env -> Env
 extEnv x v env = (x, v) : env
 
-data Oper = Plus | Minus | Mult | Div deriving (Show)
+data Oper = Plus | Minus | Mult | Div | Link | Index | Or | And | NotN deriving (Show)
 
 data Expr
     = Boolean Bool
@@ -29,8 +29,13 @@ calc Plus (Number n) (Number m) = Number (n + m)
 calc Minus (Number n) (Number m) = Number (n - m)
 calc Mult (Number n) (Number m) = Number (n * m)
 calc Div (Number n) (Number m) = Number (n / m)
+calc Link (Str n) (Str m) = Str (n ++ m)
+calc Index (Str n) (Number m) = Str ((n !! round m):"")
+calc Or (Boolean n) (Boolean m) = Boolean (n || m)
+calc And (Boolean n) (Boolean m) = Boolean (n && m)
+calc NotN (Boolean n) _ = Boolean (not n)
 calc _ _ _ = Error "syntax error"
--- TODO
+
 
 interp :: Expr -> Env -> Expr
 
@@ -72,7 +77,4 @@ nullenv = [("", Nil)]
 hl2 :: Expr -> Expr
 hl2 e = interp e nullenv
 
-example = hl2 (Let (Param "foo") 
-            (Lambda (Param "x") 
-                (Do Plus (Param "x") (Number 10.1))) 
-                    (Call (Param "foo") (Number 1)))
+example = hl2 (Do And (Boolean True) (Boolean False))
