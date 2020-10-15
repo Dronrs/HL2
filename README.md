@@ -12,6 +12,10 @@
 ~~~
 > stack ghci
 *Main HL2> :l HL2
+*HL2> hl2 <Your-Code>
+
+// or run example
+*HL2> example
 ~~~
 
 enjoy it :)
